@@ -4,7 +4,7 @@
   "description": "A api to process the my money app requests",
   "main": "index.js",
   "scripts": {
-    "test": "mocha",
+    "test": "mocha --recursive",
     "start": "node index.js",
     "dev": "nodemon"
   },
@@ -21,7 +21,8 @@
   "_moduleAliases": {
     "@app": ".",
     "@routes": "src/routes",
-    "@dao": "src/dao"
+    "@dao": "src/dao",
+    "@controllers": "src/controllers"
   },
   "author": "Bruno Casotto",
   "license": "MIT",
