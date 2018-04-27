@@ -2,6 +2,7 @@ require('module-alias/register')
 const Hapi = require('hapi')
 const Path = require('path')
 const Hoek = require('hoek')
+const routes = require('@routes')
 
 const server = Hapi.server({
   port: 4040,
@@ -18,22 +19,7 @@ server.route.state = {
   }
 }
 
-server.route([
-  {
-    method: 'GET',
-    path: '/',
-    handler: (request, h) => {
-      return 'Hello, world!';
-    }
-  },
-  {
-    method: 'GET',
-    path: '/transactions',
-    handler: (request, h) => {
-      return 'Hello, Transactions!';
-    }
-  }
-]);
+server.route(routes)
 
 server.bind({
   var: 'content'
@@ -43,5 +29,5 @@ server.start(err => {
   if (err) {
       console.log(err)
   }
-  console.log(`Server running at: ${server.info.uri}`);
+  console.log(`Server running at: ${server.info.uri}`)
 })
