@@ -8,7 +8,11 @@ class TransactionController {
    */
   getById(request, reply) {
     try {
-      return {}
+      return {
+        title : '',
+        double : 0.00,
+        description : ''
+      }
     } catch (error) {
       console.error('TransactionController.getAllByUserName', error)
       return null;

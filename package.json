@@ -4,7 +4,7 @@
   "description": "A api to process the my money app requests",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --recursive",
+    "test": "mocha '**/*.test.js'",
     "start": "node index.js",
     "dev": "nodemon"
   },
@@ -22,7 +22,8 @@
     "@app": ".",
     "@routes": "src/routes",
     "@dao": "src/dao",
-    "@controllers": "src/controllers"
+    "@controllers": "src/controllers",
+    "@test": "./test"
   },
   "author": "Bruno Casotto",
   "license": "MIT",
@@ -32,8 +33,11 @@
   "homepage": "https://github.com/BrunoCasotto/my-money-api#readme",
   "dependencies": {
     "hapi": "^17.3.1",
-    "mocha": "^5.1.1",
-    "module-alias": "^2.0.6",
-    "should": "^13.2.1"
+    "module-alias": "^2.0.6"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-http": "^4.0.0",
+    "mocha": "^5.1.1"
   }
 }
