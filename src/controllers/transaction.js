@@ -7,6 +7,8 @@ class TransactionController {
    * @param {string} id - transaction id
    */
   getById(request, reply) {
+    let transactionDao = new TransactionDao()
+    console.log(transactionDao)
     try {
       return {
         title : '',
@@ -16,6 +18,19 @@ class TransactionController {
     } catch (error) {
       console.error('TransactionController.getAllByUserName', error)
       return null;
+    }
+  }
+
+  /**
+   * function to create the transaction
+   * @param {object} request
+   * @param {object} reply
+   */
+  create(request, reply) {
+    try {
+      //code here
+    } catch (error) {
+      console.error('TransactionController.create', error)
     }
   }
 }
