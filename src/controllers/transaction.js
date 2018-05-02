@@ -8,7 +8,7 @@ class TransactionController {
    */
   getById(request, reply) {
     let transactionDao = new TransactionDao()
-    console.log(transactionDao)
+
     try {
       return {
         title : '',

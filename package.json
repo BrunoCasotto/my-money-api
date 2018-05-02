@@ -33,6 +33,7 @@
   },
   "homepage": "https://github.com/BrunoCasotto/my-money-api#readme",
   "dependencies": {
+    "dotenv": "^5.0.1",
     "firebase-admin": "^5.12.0",
     "hapi": "^17.3.1",
     "module-alias": "^2.0.6"
