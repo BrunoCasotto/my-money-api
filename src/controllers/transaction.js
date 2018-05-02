@@ -28,6 +28,7 @@ class TransactionController {
    */
   create(request, reply) {
     try {
+      return request.payload
       //code here
     } catch (error) {
       console.error('TransactionController.create', error)
