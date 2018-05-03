@@ -17,10 +17,14 @@ class TransactionDao {
   /**
    * function to save the especific transaction
    * @param {object} transaction transaction object
+   * @return {object} transaction object
    */
   save(transaction) {
     try {
-      
+      let dbReference = this.db.collection('transactions').doc('collection1')
+      let dbResult = dbReference.set(transaction)
+
+      return dbResult;
     } catch (error) {
       console.error('TransactionDao.save', error)
     }

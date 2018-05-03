@@ -25,6 +25,8 @@ class TestUtils {
       })
     } catch (error) {
       console.error('TestUtils.request', error)
+    } finally {
+      chai.request.agent(app)
     }
   }
 
@@ -44,6 +46,8 @@ class TestUtils {
       })
     } catch (error) {
       console.error('TestUtils.request', error)
+    } finally {
+      chai.request.agent(app)
     }
   }
 
@@ -61,6 +65,8 @@ class TestUtils {
     } catch (error) {
       console.error('TestUtils.generateTransaction', error)
       return {}
+    } finally {
+      chai.request.agent(app)
     }
   }
 }

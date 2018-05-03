@@ -1,9 +1,8 @@
 const admin = require('firebase-admin')
-let serviceAccount = require('./database.config.js')
+let serviceAccount = require('./database.config.json')
 
 admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://my-money-app-c5cbe.firebaseio.com"
+  credential: admin.credential.cert(serviceAccount)
 });
 
 class DataBaseService {

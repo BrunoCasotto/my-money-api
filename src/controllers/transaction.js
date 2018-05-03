@@ -10,11 +10,8 @@ class TransactionController {
     let transactionDao = new TransactionDao()
 
     try {
-      return {
-        title : '',
-        double : 0.00,
-        description : ''
-      }
+      console.log(request.payload)
+      return request.payload
     } catch (error) {
       console.error('TransactionController.getAllByUserName', error)
       return null;
@@ -28,7 +25,8 @@ class TransactionController {
    */
   create(request, reply) {
     try {
-      return request.payload
+      let transactionDao = new TransactionDao()
+      return transactionDao.save(request.payload)
       //code here
     } catch (error) {
       console.error('TransactionController.create', error)

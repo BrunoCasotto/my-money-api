@@ -37,7 +37,6 @@ describe('Controller.transaction', () => {
 
     it('expect a transaction object properties return', () => {
       let transaction = utils.generateTransaction();
-
       utils.postRequest('/transaction', transaction, (err, res)=>{
         expect(res.body).to.have.property('title')
         expect(res.body.title).to.be.equals(transaction.title)
