@@ -19,12 +19,13 @@ class TransactionDao {
    * @param {object} transaction transaction object
    * @return {object} transaction object
    */
-  save(transaction) {
+  async save(transaction) {
     try {
-      let dbReference = this.db.collection('transactions').doc('collection1')
-      let dbResult = dbReference.set(transaction)
+      let dbReference = this.db.collection('transactions')
+      let dbResult = await dbReference.add(transaction)
 
-      return dbResult;
+      let result = Object.assign({}, transaction, {_code: dbResult._referencePath.segments[1]})
+      return result
     } catch (error) {
       console.error('TransactionDao.save', error)
     }

@@ -3,51 +3,34 @@ require('module-alias/register')
 const chai = require('chai')
   , chaiHttp = require('chai-http')
   , app = require('@app/index.js')
-  , faker = require('faker');
+  , faker = require('faker')
+  , url = 'http://localhost:4040'
 
 faker.locale = "pt_BR"
 chai.use(chaiHttp);
 
 class TestUtils {
 
-  /**
-   * function to make request to the server
-   * @param {string} path - path to request
-   * @param {*} callback - callback with assertions
-   */
-  getRequest (path='', callback = (res)=>{} ) {
-    try {
-      chai.request('http://localhost:4040')
-      .get('/transaction')
-      .end((err, res) => {
-        //assertions callback here
-        callback(err, res)
-      })
-    } catch (error) {
-      console.error('TestUtils.request', error)
-    } finally {
-      chai.request.agent(app)
-    }
-  }
-
     /**
    * function to make request to the server
    * @param {string} path - path to request
-   * @param {*} callback - callback with assertions
+   * @param {object} data - data to send
    */
-  postRequest (path='', data={}, callback = (res)=>{} ) {
+  postRequest (data) {
     try {
-      chai.request('http://localhost:4040')
+      return chai.request(url)
       .post('/transaction')
       .send(data)
-      .end((err, res) => {
-        //assertions callback here
-        callback(err, res)
-      })
     } catch (error) {
       console.error('TestUtils.request', error)
-    } finally {
-      chai.request.agent(app)
+    }
+  }
+
+  closeServer () {
+    try {
+      app.close();
+    } catch (error) {
+      console.error('TestUtils.closeServer', error)
     }
   }
 
@@ -65,8 +48,6 @@ class TestUtils {
     } catch (error) {
       console.error('TestUtils.generateTransaction', error)
       return {}
-    } finally {
-      chai.request.agent(app)
     }
   }
 }
