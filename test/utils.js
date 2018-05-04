@@ -16,21 +16,13 @@ class TestUtils {
    * @param {string} path - path to request
    * @param {object} data - data to send
    */
-  postRequest (data) {
+  postRequest (path, data) {
     try {
       return chai.request(url)
-      .post('/transaction')
+      .post(path)
       .send(data)
     } catch (error) {
       console.error('TestUtils.request', error)
-    }
-  }
-
-  closeServer () {
-    try {
-      app.close();
-    } catch (error) {
-      console.error('TestUtils.closeServer', error)
     }
   }
 
