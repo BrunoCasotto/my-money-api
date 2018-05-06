@@ -53,9 +53,12 @@ class TransactionDao {
    * function to remove the especific transaction
    * @param {object} transaction - transaction object
    */
-  remove(transaction) {
+  async remove(id) {
     try {
-      //code here
+      if(!id) return { error: 'not.id'}
+
+      let dbReference = this.db.collection('transactions').doc(id)
+      return await dbReference.delete()
     } catch (error) {
       console.error('TransactionDao.remove', error)
     }

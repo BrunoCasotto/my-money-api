@@ -144,3 +144,23 @@ describe('[Controller.transaction] function update', () => {
     expect(new Date(result.body.date)).to.equalDate(new Date(newObj.date))
   }).timeout(8000)
 })
+
+describe('[Controller.transaction] function remove', () => {
+  let transaction = utils.generateTransaction()
+  let result = null
+
+  it('expect status 200', async () => {
+    result = await utils.deleteRequest('/transaction', transaction)
+
+    expect(result).to.have.status(200)
+  }).timeout(8000)
+
+  it('expect title property into result', async () => {
+    let res = await utils.postRequest('/transaction', transaction)
+    result = await utils.deleteRequest('/transaction', {id: res.body._code})
+    result = await utils.getRequest('/transaction', {id: res.body._code})
+
+    expect(result.body).to.have.property('error')
+    expect(result.body.error).to.be.equals('not.found')
+  }).timeout(8000)
+})

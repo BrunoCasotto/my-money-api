@@ -44,6 +44,19 @@ class TransactionController {
       console.error('TransactionController.create', error)
     }
   }
+
+  /**
+   * function to remote the transaction
+   */
+  remove(request, reply) {
+    try {
+      let transactionDao = new TransactionDao()
+      let id = request.query.id || ''
+      return transactionDao.remove(id)
+    } catch (error) {
+      console.error('TransactionController.create', error)
+    }
+  }
 }
 
 module.exports = TransactionController

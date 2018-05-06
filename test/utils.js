@@ -41,7 +41,7 @@ class TestUtils {
     }
   }
 
-        /**
+  /**
    * function to make request to the server
    * @param {string} path - path to request
    * @param {object} data - data to send
@@ -70,6 +70,21 @@ class TestUtils {
     } catch (error) {
       console.error('TestUtils.generateTransaction', error)
       return {}
+    }
+  }
+
+    /**
+   * function to make request to the server
+   * @param {string} path - path to request
+   * @param {object} query - query to send
+   */
+  deleteRequest(path, query) {
+    try {
+      return chai.request(url)
+      .del(path)
+      .query(query)
+    } catch (error) {
+      console.error('TestUtils.request', error)
     }
   }
 }
