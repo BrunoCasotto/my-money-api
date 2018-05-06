@@ -1,5 +1,6 @@
 
 const DatabaseService = require('@services/database')
+const denormalize = require('./denormalizeObjects')
 let dbService = new DatabaseService();
 
 class TransactionDao {
@@ -35,9 +36,14 @@ class TransactionDao {
    * function to update the especific transaction
    * @param {object} transaction transaction object
    */
-  update(transaction) {
+  async update(transaction) {
     try {
-      //code here
+      if(!transaction._code) return {}
+
+      let dbReference = this.db.collection('transactions').doc(transaction._code)
+      let dbResult = await dbReference.set(transaction)
+
+      return transaction;
     } catch (error) {
       console.error('TransactionDao.update', error)
     }
@@ -50,6 +56,28 @@ class TransactionDao {
   remove(transaction) {
     try {
       //code here
+    } catch (error) {
+      console.error('TransactionDao.remove', error)
+    }
+  }
+
+  /**
+   * function to get the document
+   * @param {string} id id
+   */
+  async getById(id) {
+    try {
+      if(!id) return {}
+
+      let dbReference = this.db.collection('transactions').doc(id)
+      let dbResult = await dbReference.get()
+
+      if(!dbResult._fieldsProto) return {
+        error: 'not.found'
+      }
+
+      let result = Object.assign({}, dbResult._fieldsProto, {_code: id})
+      return denormalize.denormalizeTransaction(result)
     } catch (error) {
       console.error('TransactionDao.remove', error)
     }

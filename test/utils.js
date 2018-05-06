@@ -26,6 +26,36 @@ class TestUtils {
     }
   }
 
+      /**
+   * function to make request to the server
+   * @param {string} path - path to request
+   * @param {object} query - query to get
+   */
+  getRequest (path, query) {
+    try {
+      return chai.request(url)
+      .get(path)
+      .query(query)
+    } catch (error) {
+      console.error('TestUtils.request', error)
+    }
+  }
+
+        /**
+   * function to make request to the server
+   * @param {string} path - path to request
+   * @param {object} data - data to send
+   */
+  putRequest (path, data) {
+    try {
+      return chai.request(url)
+      .put(path)
+      .send(data)
+    } catch (error) {
+      console.error('TestUtils.request', error)
+    }
+  }
+
   /**
    * function to generate transaction object
    */

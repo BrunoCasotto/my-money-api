@@ -8,10 +8,9 @@ class TransactionController {
    */
   getById(request, reply) {
     let transactionDao = new TransactionDao()
-
     try {
-      console.log(request.payload)
-      return request.payload
+      let id = request.query.id || ''
+      return transactionDao.getById(id)
     } catch (error) {
       console.error('TransactionController.getAllByUserName', error)
       return null;
@@ -27,7 +26,20 @@ class TransactionController {
     try {
       let transactionDao = new TransactionDao()
       return transactionDao.save(request.payload)
-      //code here
+    } catch (error) {
+      console.error('TransactionController.create', error)
+    }
+  }
+
+  /**
+   * function to update the transaction
+   * @param {object} request
+   * @param {object} reply
+   */
+  update(request, reply) {
+    try {
+      let transactionDao = new TransactionDao()
+      return transactionDao.update(request.payload)
     } catch (error) {
       console.error('TransactionController.create', error)
     }
