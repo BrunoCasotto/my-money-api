@@ -1,8 +1,11 @@
 const admin = require('firebase-admin')
 let serviceAccount = require('./database.config.json')
+let serviceAccountTest = require('./test.database.config.json')
 
 admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount)
+  credential: admin.credential.cert(
+    (process.env.NODE_ENV === 'test') ? serviceAccountTest : serviceAccount
+  )
 });
 
 class DataBaseService {

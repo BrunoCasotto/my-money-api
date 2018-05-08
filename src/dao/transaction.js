@@ -1,7 +1,8 @@
 
 const DatabaseService = require('@services/database')
-const denormalize = require('./denormalizeObjects')
-let dbService = new DatabaseService();
+  , denormalize = require('@dao/denormalizeObjects')
+
+let dbService = new DatabaseService()
 
 class TransactionDao {
   /**

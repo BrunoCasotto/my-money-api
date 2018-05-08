@@ -58,3 +58,4 @@ typings/
 .env
 
 src/services/database.config.json
+src/services/test.database.config.json

@@ -9,7 +9,7 @@ class DenormalizeObjects {
     try {
 
       let transactionObj = {
-        // _code: transaction._code,
+        _code: transaction._code,
         value: transaction.value.stringValue,
         title: transaction.title.stringValue,
         description: transaction.description.stringValue,
